@@ -3,9 +3,9 @@ import telnetlib
 
 app = Flask(__name__)
 
-DENON_IP = '192.168.200.206'
-DENON_PORT = 1255
-DENON_CMD = 'heos://players/get_players'
+DENON_IP = '192.168.200.206' #Set your Denon Heos player IP if you do not want to use 'ip' in every query
+DENON_PORT = 1255 #Default port for Denon Heos, change if needed
+DENON_CMD = 'heos://players/get_players' #Default command that will be used if no command specified
 
 def execute_denon_command(command, ip, port):
     try:
