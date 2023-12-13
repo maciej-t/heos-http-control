@@ -9,3 +9,4 @@ Example response:
 ```
 {"heos": {"command": "players/get_play_state", "result": "success", "message": "pid=123456789&state=stop"}}
 ```
+
