@@ -14,5 +14,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 8080
 
 # Command to run the application
-CMD ["python", "loxone-heos-control.py"]
+CMD ["python", "heos-http-control.py"]
 
