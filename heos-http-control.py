@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 DENON_IP = '192.168.200.206' #Set your Denon Heos player IP if you do not want to use 'ip' in every query
 DENON_PORT = 1255 #Default port for Denon Heos, change if needed
-DENON_CMD = 'heos://players/get_players' #Default command that will be used if no command specified
+DENON_CMD = 'players/get_players' #Default command that will be used if no command specified
 
 def execute_denon_command(command, ip, port):
     try:
@@ -20,6 +20,7 @@ def execute_denon_command(command, ip, port):
 @app.route('/', methods=['GET'])
 def execute():
     denon_cmd = request.args.get('command', DENON_CMD)
+    denon_cmd = 'heos://'+denon_cmd
     denon_ip = request.args.get('ip', DENON_IP)
     denon_port = request.args.get('port', DENON_PORT)
 
