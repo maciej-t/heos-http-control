@@ -23,7 +23,7 @@ def execute():
     denon_cmd = request.args.get('command', DENON_CMD)
     denon_ip = request.args.get('ip', DENON_IP)
     denon_port = request.args.get('port', DENON_PORT)
-    denon_proto = request.args.get('proto', DENON_PROTO)
+    denon_proto = request.args.get('proto', DENON_PROT)
     if denon_prot == 'HEOS':
         denon_cmd = 'heos://'+denon_cmd
     result = execute_denon_command(denon_cmd, denon_ip, denon_port)
