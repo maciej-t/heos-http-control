@@ -3,7 +3,7 @@ import telnetlib
 
 app = Flask(__name__)
 
-DENON_IP = '192.168.200.206' #Set your Denon Heos player IP if you do not want to use 'ip' in every query
+DENON_IP = 'denonheos.home.arpa' #Set your Denon Heos player IP if you do not want to use 'ip' in every query
 DENON_PORT = 1255 #Default port for Denon Heos. Default port for Heos - 1255. Default port for AVR - 23.
 DENON_CMD = 'players/get_players' #Example HEOS commands: 'players/get_players'. Example  AVR command: 'PW?'
 DENON_PROT = 'HEOS' #Default Heos (HEOS|AVR)
