@@ -24,7 +24,7 @@ def execute():
     denon_ip = request.args.get('ip', DENON_IP)
     denon_port = request.args.get('port', DENON_PORT)
     denon_proto = request.args.get('proto', DENON_PROT)
-    if denon_prot == 'HEOS':
+    if DENON_PROT == 'HEOS':
         denon_cmd = 'heos://'+denon_cmd
     result = execute_denon_command(denon_cmd, denon_ip, denon_port)
     resultnl = result.replace("\r", "\r\n")
