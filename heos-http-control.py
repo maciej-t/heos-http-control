@@ -8,11 +8,13 @@ DENON_PORT = 1255 #Default port for Denon Heos. Default port for Heos - 1255. De
 DENON_CMD = 'players/get_players' #Example HEOS commands: 'players/get_players'. Example  AVR command: 'PW?'
 DENON_PROT = 'HEOS' #Default Heos (HEOS|AVR)
 
-def execute_denon_command(command, ip, port):
+def execute_denon_command(command, ip, port, proto):
+    # HEOS responses are terminated with CRLF, plain AVR responses with a bare CR
+    terminator = b'\r\n' if proto == 'HEOS' else b'\r'
     try:
         with telnetlib.Telnet(ip, port) as tn:
             tn.write(command.encode('ascii') + b'\r\n')
-            response = tn.read_until(b'\r\n', timeout=1).decode('utf-8')
+            response = tn.read_until(terminator, timeout=1).decode('utf-8')
         return response.strip()
     except Exception as e:
         return f"Error: {str(e)}"
@@ -26,9 +28,10 @@ def execute():
     denon_proto = request.args.get('proto', DENON_PROT)
     if denon_proto == 'HEOS':
         denon_cmd = 'heos://'+denon_cmd
-    result = execute_denon_command(denon_cmd, denon_ip, denon_port)
-    resultnl = result.replace("\r", "\r\n")
-    return resultnl+"\r\n";
+    result = execute_denon_command(denon_cmd, denon_ip, denon_port, denon_proto)
+    # Normalize any CR/CRLF line endings before re-adding CRLF, to avoid duplicating blank lines
+    resultnl = result.replace("\r\n", "\n").replace("\r", "\n").replace("\n", "\r\n")
+    return resultnl+"\r\n"
 
 
 if __name__ == '__main__':

@@ -11,3 +11,5 @@ Example response:
 ```
 
 HEOS Cli documentation: https://rn.dmglobal.com/usmodel/HEOS_CLI_ProtocolSpecification-Version-1.17.pdf 
+
+HEOS AVR documentation: https://assets.denon.com/documentmaster/us/avr-4308ciserialprotocol_ver510a.pdf
